@@ -18,6 +18,7 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 
+
 #Phase - 2: Building Model
 #Initialise the CNN
 model_cnn_classifier = Sequential()
@@ -39,6 +40,8 @@ model_cnn_classifier.add(Dense(output_dim = 128, activation= 'relu'))
 #Phase - (middle): Output layer 
 #model_cnn_classifier.add(Dense(   ))
 model_cnn_classifier.add(Dense(output_dim = 1, activation= 'sigmoid'))
+
+
 
 
 #Phase - 3 :  compiling the CNN
