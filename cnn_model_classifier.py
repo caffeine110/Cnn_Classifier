@@ -10,33 +10,38 @@ Aim : Convulational Neural Network to distinguish between two animals
 
 """
 
-#Phase - 1:  Import
-#importing all the required librariees
+
+
+
+#Part - 1 : Building the model
+
+# Importing the Keras libraries and packages
 from keras.models import Sequential
-from keras.layers import Convolution2D
+from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 
-
-#Phase - 2: Building Model
-#Initialise the CNN
+#Phase 1 : Initialising the CNN
 model_cnn_classifier = Sequential()
 
+#Convolutional 
+model_cnn_classifier.add(Conv2D(32,3,3,  input_shape = (64,64,3), activation= 'relu'))
 
-#Convolutional step
-model_cnn_classifier.add(Convolution2D(32,3,3,  input_shape = (64,64,3), activation= 'relu'))
-
-#Pooling step
+# Phase - 2 : Pooling
 model_cnn_classifier.add(MaxPooling2D(pool_size = (2,2)))
 
-#Flatten the step
+# Adding a second convolutional layer
+model_cnn_classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
+model_cnn_classifier.add(MaxPooling2D(pool_size = (2, 2)))
+
+
+#Phase - 3 : Flattening
 model_cnn_classifier.add(Flatten())
- 
+
+#Phase - 4 : 
 #Full connection
 model_cnn_classifier.add(Dense(output_dim = 128, activation= 'relu'))
-
-
 #Phase - (middle): Output layer 
 #model_cnn_classifier.add(Dense(   ))
 model_cnn_classifier.add(Dense(output_dim = 1, activation= 'sigmoid'))
@@ -44,11 +49,13 @@ model_cnn_classifier.add(Dense(output_dim = 1, activation= 'sigmoid'))
 
 
 
-#Phase - 3 :  compiling the CNN
+#Phase - 5 :  compiling the CNN
 model_cnn_classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 
-#Phase - 4 : Fitting CNN to the image
+
+
+#Part 2: Fitting CNN to the image
 #Importing 
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -74,9 +81,15 @@ test_set = test_datagen.flow_from_directory(
         batch_size = 32,
         class_mode='binary')
 
-#Final Step
+
+#Fitting data
+#Training Our model by fitting the data
 model_cnn_classifier.fit_generator(training_set,
                          steps_per_epoch = 8000,
                          epochs = 25,
                          validation_data = test_set,
                          validation_steps = 2000)
+
+
+#Phase - 5 : Prediction on New data
+#
