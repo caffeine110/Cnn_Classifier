@@ -86,10 +86,17 @@ test_set = test_datagen.flow_from_directory(
 #Training Our model by fitting the data
 model_cnn_classifier.fit_generator(training_set,
                          steps_per_epoch = 8000,
-                         epochs = 25,
+                         epochs = 1,
                          validation_data = test_set,
                          validation_steps = 2000)
 
 
 #Phase - 5 : Prediction on New data
 #
+predict_set = test_datagen.flow_from_directory(
+        'dataset/single_prediction',
+        target_size = (64,64),
+        batch_size = 32,
+        class_mode='binary')
+#result is stored in predictions
+predictions = model_cnn_classifier.predict(predict_set)
