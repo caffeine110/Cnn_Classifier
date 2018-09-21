@@ -5,11 +5,9 @@ Created on Tue Aug 21 12:06:22 2018
 
 @author : Gaurav Gahukar
 
-
-Aim : Convulational Neural Network to distinguish between two animals
-
+Aim     : Convulational Neural Network to distinguish between two animals
+        : implimentation of CNN using Convulation, pulling, Flatten and Dense Layers
 """
-
 
 
 
@@ -21,6 +19,7 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+
 
 #Phase 1 : Initialising the CNN
 model_cnn_classifier = Sequential()
@@ -59,6 +58,7 @@ model_cnn_classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', m
 #Importing 
 from keras.preprocessing.image import ImageDataGenerator
 
+
 # Train Datagen
 train_datagen = ImageDataGenerator(
         rescale = 1./255,
@@ -67,12 +67,14 @@ train_datagen = ImageDataGenerator(
 #Test Daragen
 test_datagen = ImageDataGenerator(rescale=1./255)
 
+
 #Training Set
 training_set= train_datagen.flow_from_directory(
         'dataset/training_set',
         target_size = (64, 64),
         batch_size = 32,
         class_mode='binary')
+
 
 #test Set
 test_set = test_datagen.flow_from_directory(
@@ -91,12 +93,18 @@ model_cnn_classifier.fit_generator(training_set,
                          validation_steps = 2000)
 
 
+
+# testing classifier
+test = model_cnn_classifier(test_set)
+
 #Phase - 5 : Prediction on New data
-#
-predict_set = test_datagen.flow_from_directory(
+#check model 
+predict_datagen = ImageDataGenerator(rescale = 1./255)
+predict_set = predict_datagen.flow_from_directory(
         'dataset/single_prediction',
         target_size = (64,64),
-        batch_size = 32,
+        batch_size = 1,
         class_mode='binary')
 #result is stored in predictions
+
 predictions = model_cnn_classifier.predict(predict_set)
