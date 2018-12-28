@@ -1,35 +1,35 @@
-# Cnn_Classifier
-Solving Binary Classification Problem.
+## AIM : 
+Classification of images using Convolutional Neural Network.
+
+## Introduction
+It is very easy to recognise the image for a human one, but for a computer it is very difficult to do that. Convolutions Neural Network allows us to analyse the image content. CNN can be implimented using the sklearn library, CNN model take images as input to model and after the classfication we get the result in predicted classes.
 
 
-Research papers for additional readings.
+## Keywords 
+Keywords : Machine Learning, CNN, Image Processing, Matplotlib.
+
+## Tools
+PreRequirements :
+
+		 LIBRARIES 	: Sklearn, Keras, matplotlib.
+		 IDE 		: spyder
 
 
-Paper No.1:
-
-	Gradient Based Learning to Document Recognition
-
-	http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf
+Classfy the images and store them into respective folders, built the model using keras 
 
 
-Paper No.2:
+## procedure to run
+Procedure to Exicute the Program: 
 
-	Understand Convolutional Neural Network Using Mathematical model
-
-	https://arxiv.org/pdf/1609.04112.pdf
-
-
-Paper No.3:
-
-	Delving Deep into Rectifiers:
-	Surpassing Human-Level Performance on ImageNet Classification
-
-	https://arxiv.org/pdf/1502.01852.pdf
+	1). Exctraction :
+		Dataset is Downloaded form Kaggle
+	2). Preporcessing
+		Images are proprocessed and no need to resize and if needed we can resize them using numpy.
+	3). Model Training
+		Run the model.fit statement
+	4). prediction
+		To predict the images content run the model.predict command with argument as a numpy matrix
 
 
-Paper No.4:
-
-	Evaluation of Pooling Operations in Convolutional Architectures for Object Recognition
-	Dominik Scherer, Andreas Muller , and Sven Behnke
-
-	http://ais.uni-bonn.de/papers/icann2010_maxpool.pdf
+## Evaluation Plan
+As this is a Classification Problem we can calculate the accuracy of model from sklearn.metrics using accuacy Score.
